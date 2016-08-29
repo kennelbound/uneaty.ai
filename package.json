@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/uneaty/uneaty.ai#readme",
   "dependencies": {
-    "uneaty.core": "git+https://github.com/uneaty/uneaty.core.git#feature-projenody"
+    "uneaty.core": "git+https://github.com/uneaty/uneaty.core.git"
   }
 }
