@@ -1,5 +1,6 @@
 {
   "name": "uneaty.ai",
+  "export": "Assets/AI",
   "dependencies": [
     "uneaty/uneaty.core"
   ]
