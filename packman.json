@@ -1,3 +1,6 @@
 {
-  "name": "uneaty.ai"
+  "name": "uneaty.ai",
+  "dependencies": [
+    "uneaty/uneaty.core"
+  ]
 }
