@@ -1,17 +1,12 @@
 ﻿using UnityEngine;
 
-public class RayCastingAISensor : MonoBehaviour
+public class RayCastingAISensor : SimpleFloatSensor
 {
     public Vector3 Source = Vector3.zero;
     public Vector3 Direction = Vector3.forward;
     public float SensorRange = 1;
 
-    public int Count
-    {
-        get { return 1; }
-    }
-
-    public float Sense()
+    public override float Sense()
     {
         if (float.IsNaN(1 / SensorRange))
         {
@@ -20,9 +15,9 @@ public class RayCastingAISensor : MonoBehaviour
 
         RaycastHit hit;
         if (!float.IsNaN(transform.position.x) && Physics.Raycast(transform.position + Source,
-            transform.TransformDirection(Direction.normalized), out hit, SensorRange))
+                transform.TransformDirection(Direction.normalized), out hit, SensorRange))
         {
-            float sensorModified = hit.distance/SensorRange;
+            float sensorModified = hit.distance / SensorRange;
             if (float.IsNaN(sensorModified))
             {
                 sensorModified = 0f;

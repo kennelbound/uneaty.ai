@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SensorBasedAI : UnitController
 {
-    public List<RayCastingAISensor> Sensors = new List<RayCastingAISensor>();
+    public List<SimpleFloatSensor> Sensors = new List<SimpleFloatSensor>();
     public List<AIControlledLimb> Limbs = new List<AIControlledLimb>();
     public List<FitnessCalculator> FitnessCalculators = new List<FitnessCalculator>();
 
@@ -17,16 +17,17 @@ public class SensorBasedAI : UnitController
 
         ISignalArray ia = Box.InputSignalArray;
         int index = 0;
-        foreach (RayCastingAISensor sensor in Sensors)
+        foreach (SimpleFloatSensor sensor in Sensors)
         {
             ia[index++] = sensor.Sense();
         }
 
+        // Execute the sensor logic, and routing through the neural network
         Box.Activate();
 
         ISignalArray oa = Box.OutputSignalArray;
         index = 0;
-        Dictionary<string, object> values = new Dictionary<string, object>();
+        Dictionary<string, object> values = new Dictionary<string, object>(); // This may cause a mem leak.
         foreach (AIControlledLimb limb in Limbs)
         {
             foreach (SimpleAIOutputConfig config in limb.Configurations)
@@ -67,19 +68,10 @@ public class SensorBasedAI : UnitController
 
     public int SensorCount
     {
-        get
-        {
-            int total = 0;
-            foreach (RayCastingAISensor sensor in Sensors)
-            {
-                total += sensor.Count;
-            }
-            return total;
-        }
+        get { return Sensors.Count; }
     }
 
-    public
-        int OutputCount
+    public int OutputCount
     {
         get
         {

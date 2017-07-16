@@ -12,7 +12,7 @@ public class AIImpulse : AIControlledLimb
         _cachedRigidbody = GetComponent<Rigidbody>();
     }
 
-    public List<SimpleAIOutputConfig> Configurations
+    public new List<SimpleAIOutputConfig> Configurations
     {
         get
         {
