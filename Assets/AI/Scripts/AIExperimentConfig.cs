@@ -1,4 +1,7 @@
-﻿public class AIExperimentConfig : ExperimentConfig
+﻿using System;
+
+[Serializable]
+public class AIExperimentConfig : ExperimentConfig
 {
     public SensorBasedAI AIPrototype;
 

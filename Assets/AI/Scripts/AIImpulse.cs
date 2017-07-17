@@ -27,8 +27,8 @@ public class AIImpulse : AIControlledLimb
 
     public void Handle(IDictionary output)
     {
-        Vector3 leftDirection = (Vector3) output["AI-ImpulseLeft-" + name + "-" + gameObject.GetInstanceID()];
-        Vector3 rightDirection = (Vector3) output["AI-ImpulseRight-" + name + "-" + gameObject.GetInstanceID()];
+        Vector3 leftDirection = (Vector3) output["AI-ImpulseLeft-" + name + "-" + gameObject.GetInstanceID()] * Modifier;
+        Vector3 rightDirection = (Vector3) output["AI-ImpulseRight-" + name + "-" + gameObject.GetInstanceID()] * Modifier;
         _cachedRigidbody.AddForceAtPosition(leftDirection, new Vector3(0f, 1f, .5f));
         _cachedRigidbody.AddForceAtPosition(rightDirection, new Vector3(1f, 1f, .5f));
     }
