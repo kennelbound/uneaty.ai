@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SharpNeat.Phenomes;
 using UnityEngine;
 
@@ -7,6 +8,22 @@ public class SensorBasedAI : UnitController
     public List<SimpleFloatSensor> Sensors = new List<SimpleFloatSensor>();
     public List<AIControlledLimb> Limbs = new List<AIControlledLimb>();
     public List<FitnessCalculator> FitnessCalculators = new List<FitnessCalculator>();
+    public Boolean AllowCollisions = false;
+
+    private Collider _myCollider;
+
+    private void Start()
+    {
+        _myCollider = gameObject.GetComponent<Collider>();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.gameObject.GetComponent<SensorBasedAI>() != null)
+        {
+            Physics.IgnoreCollision(other.collider, _myCollider);
+        }
+    }
 
     public void FixedUpdate()
     {
